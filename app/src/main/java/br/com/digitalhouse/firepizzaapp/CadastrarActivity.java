@@ -79,7 +79,7 @@ public class CadastrarActivity extends AppCompatActivity {
 
                 private void AtualizarPerfil(){
 
-                    String nome = nomeEditText.toString();
+                    String nome = nomeEditText.getEditableText().toString();
 
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -103,7 +103,7 @@ public class CadastrarActivity extends AppCompatActivity {
 
     private void irParaPrincipal() {
 
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(this,PrincipalActivity.class);
         startActivity(intent);
     }
 

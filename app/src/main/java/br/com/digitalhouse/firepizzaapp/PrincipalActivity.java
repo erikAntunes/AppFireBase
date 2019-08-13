@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class PrincipalActivity extends AppCompatActivity {
-    private TextView bemVindo;
+    private TextView nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class PrincipalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_principal);
 
 
-        bemVindo = findViewById(R.id.bem_vindo_id);
+        nome = findViewById(R.id.nome_bem_vindo_id);
 
 
 
@@ -29,7 +29,7 @@ public class PrincipalActivity extends AppCompatActivity {
             String email = user.getEmail();
 
 
-            bemVindo.setText("Bem Vindo"+name);
+            nome.setText(name);
         }
 
 
