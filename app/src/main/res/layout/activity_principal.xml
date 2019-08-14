@@ -20,14 +20,16 @@
         app:strokeWidth="@dimen/cardview_default_elevation">
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/perfil_imageView_id"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center|top"
+            android:layout_marginBottom="30dp"
+            android:layout_gravity="center"
             android:src="@drawable/profile_image"
-            
+            app:civ_border_width="10dp"
+            app:civ_border_color="@color/LightRed"
+
             />
 
         <TextView
@@ -36,10 +38,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:layout_gravity="center|top"
             android:text="Bem Vindo"
             android:textColor="@color/AccentRed"
-            android:textSize="35sp"
+            android:textSize="45sp"
             android:textStyle="bold" />
 
         <TextView
@@ -48,11 +51,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="150dp"
+            android:layout_marginBottom="130dp"
             android:layout_gravity="center|bottom"
             android:text="Nome"
             android:textColor="@color/AccentRed"
-            android:textSize="30sp"
+            android:textSize="35sp"
             android:textStyle="bold" />
 
         <Button
@@ -61,7 +64,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="30dp"
-            android:background="@color/AccentRed"
+            android:background="@color/LightRed"
             android:hint="Trocar Foto"
             android:textColorHint="@color/Branco"
             android:textSize="25sp"/>
