@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/DarkRed"
     android:gravity="center"
-    tools:context=".PrincipalActivity">
+    tools:context=".PrincipalActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_margin="30dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        app:cardCornerRadius="8dp"
+        app:strokeColor="@color/Branco"
+        app:strokeWidth="@dimen/cardview_default_elevation">
 
 
         <ImageView
+            android:id="@+id/perfil_imageView_id"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="30dp"
             android:layout_gravity="center|top"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/profile_image"
+            
             />
 
         <TextView
@@ -51,6 +56,7 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/trocar_foto_button"
             android:layout_width="170dp"
             android:layout_height="50dp"
             android:layout_gravity="center|bottom"

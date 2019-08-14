@@ -3,6 +3,9 @@
     package="br.com.digitalhouse.firepizzaapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.Camera"/>
+
+
 
     <application
         android:allowBackup="true"
