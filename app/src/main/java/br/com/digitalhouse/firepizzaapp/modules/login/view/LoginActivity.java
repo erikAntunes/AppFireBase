@@ -1,7 +1,12 @@
-package br.com.digitalhouse.firepizzaapp;
+package br.com.digitalhouse.firepizzaapp.modules.login.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import br.com.digitalhouse.firepizzaapp.CadastrarActivity;
+import br.com.digitalhouse.firepizzaapp.PrincipalActivity;
+import br.com.digitalhouse.firepizzaapp.R;
+import br.com.digitalhouse.firepizzaapp.modules.login.viewmodel.LoginViewModel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,12 +25,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
-    private FirebaseAuth firebaseAuth;
     private EditText emailEditText;
     private EditText senhaEditText;
     private Button loginButton;
     private Button registrarButton;
+    private LoginViewModel loginViewModel;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         emailEditText = findViewById(R.id.email_edit_text);
         senhaEditText = findViewById(R.id.senha_edit_text);
-
-        firebaseAuth = FirebaseAuth.getInstance();
+        progressBar = findViewById(R.id.progressBar);
 
         registrarButton = findViewById(R.id.registrar_button);
         registrarButton.setOnClickListener(new View.OnClickListener() {
@@ -52,38 +57,39 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
+
+        loginViewModel.getAutenticadoLiveData()
+                .observe(this, autenticado ->{
+                    if(autenticado){
+                        irParaPrincipal();
+                    }else {
+                        Toast.makeText(this,"Falha na autenticação",Toast.LENGTH_SHORT).show();
+                    }
+                });
+        loginViewModel.getLoaderLiveData()
+                .observe(this, showLoader ->{
+                    if ((showLoader)) {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }else{
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
     }
+
 
     private void Logar() {
         String email = emailEditText.getEditableText().toString();
 
         String senha = senhaEditText.getEditableText().toString();
 
-        firebaseAuth.signInWithEmailAndPassword(email, senha)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            irParaPrincipal();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+        loginViewModel.autenticarUsuario(email,senha);
 
-                        }
-
-
-                    }
-                });
     }
 
     private void irParaPrincipal() {
 
-        Intent intent = new Intent(this,PrincipalActivity.class);
+        Intent intent = new Intent(this, PrincipalActivity.class);
         startActivity(intent);
     }
 

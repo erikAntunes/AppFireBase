@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FireBaseApp</string>
+    <string name="default_notification_channel_id">FireChannel</string>
+
 </resources>
