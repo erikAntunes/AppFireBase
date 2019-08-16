@@ -18,8 +18,8 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
     private List<Pizza> pizzaList = new ArrayList<>();
 
     public void atualizarPizzas(List<Pizza> pizzaList){
-
         this.pizzaList = pizzaList;
+        notifyDataSetChanged();
     }
 
     @NonNull

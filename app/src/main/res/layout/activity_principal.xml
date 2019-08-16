@@ -73,6 +73,7 @@
             android:id="@+id/mussarela_button"
             android:layout_marginLeft="15dp"
             android:hint="M"
+            android:textColor="@color/Branco"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="bottom|left"
@@ -92,11 +93,11 @@
             android:background="@color/AccentRed"
             />
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recycler_pizza_view"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_gravity="bottom"></androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_pizza_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom" />
 
     </com.google.android.material.card.MaterialCardView>
 

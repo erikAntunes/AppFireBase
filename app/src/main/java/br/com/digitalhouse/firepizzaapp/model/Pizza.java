@@ -5,7 +5,7 @@ import java.util.Date;
 public class Pizza {
 
     private String descricao;
-    private float preco;
+    private double preco;
     private boolean entregue;
     private Date data;
 
@@ -17,11 +17,11 @@ public class Pizza {
         this.descricao = descricao;
     }
 
-    public float getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 
