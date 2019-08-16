@@ -2,17 +2,20 @@ package br.com.digitalhouse.firepizzaapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import br.com.digitalhouse.firepizzaapp.adapter.PizzaAdapter;
+import br.com.digitalhouse.firepizzaapp.model.Pizza;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Date;
 
 
 public class PrincipalActivity extends AppCompatActivity {
@@ -34,6 +38,8 @@ public class PrincipalActivity extends AppCompatActivity {
     private CircleImageView perfilImageView;
     private Button trocarFotoButton;
     private FirebaseUser user;
+    private PizzaAdapter pizzaAdapter;
+    private RecyclerView pizzaRecyclerView;
 
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -46,7 +52,7 @@ public class PrincipalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-
+        pizzaRecyclerView = findViewById(R.id.recycler_pizza_view);
 
         nomeTextView = findViewById(R.id.nome_bem_vindo_id);
         perfilImageView = findViewById(R.id.perfil_imageView_id);
@@ -73,6 +79,25 @@ public class PrincipalActivity extends AppCompatActivity {
 
         baixarFoto();
 
+        pizzaAdapter = new PizzaAdapter();
+        pizzaRecyclerView.setAdapter(pizzaAdapter);
+        pizzaRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Button mussarela = findViewById(R.id.mussarela_button);
+        Button calabresa = findViewById(R.id.calabresa_button);
+
+        
+
+
+    }
+
+    private void PedirPizza (String descricao,float preco){
+
+        Pizza pizza = new Pizza();
+        pizza.setDescricao(descricao);
+        pizza.setPreco(preco);
+        pizza.setEntregue(false);
+        pizza.setData(new Date());
     }
 
     private void baixarFoto() {
